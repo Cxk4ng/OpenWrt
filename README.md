@@ -18,7 +18,7 @@
 
 > 基于Lean版编译 整合了常用插件
 
-* sirpdboy https://github.com/sirpdboy/openwrt (个人感觉最好用)
+* sirpdboy https://github.com/sirpdboy/openwrt  📌
 * firker https://www.right.com.cn/forum/thread-1811791-1-1.html
 * lusty https://www.right.com.cn/forum/thread-7667094-1-1.html
 * Myan's https://www.right.com.cn/forum/thread-4062018-1-1.html
@@ -36,14 +36,15 @@
 
 > 一定程度存在订阅泄露 或者访问不稳定情况
 
-| 作者          | 介绍                            | 地址                           |
-| ------------- | ------------------------------- | ------------------------------ |
-| 友善的肥羊    | Subconverter 订阅转换前端增强版 | https://suburl.v1.mk/          |
-| 品云订阅转换  | 品云官方订阅转换工具            | https://id9.cc/                |
-| つつの · 鲸歌 | TAG 机场官方合作工具            | https://sub.tsutsu.one/        |
-| immconvert    | ImmTelecom 机场官网订阅转换工具 | https://immconvert.com/        |
-| Next Convert  | Nexitally 奶昔机场官方订阅转换  | https://nexconvert.com/        |
-| ACL4SSR       | 知名的规则转换网站              | https://acl4ssr-sub.github.io/ |
+| 作者          | 介绍                             | 地址                           |
+| ------------- | -------------------------------- | ------------------------------ |
+| Tindy X 📌     | Sub 作者维护 Dler Cloud 机场赞助 | https://sub.dler.io/           |
+| 友善的肥羊    | Subconverter 订阅转换前端增强版  | https://suburl.v1.mk/          |
+| 品云订阅转换  | 品云官方订阅转换工具             | https://id9.cc/                |
+| つつの · 鲸歌 | TAG 机场官方合作工具             | https://sub.tsutsu.one/        |
+| immconvert    | ImmTelecom 机场官网订阅转换工具  | https://immconvert.com/        |
+| Next Convert  | Nexitally 奶昔机场官方订阅转换   | https://nexconvert.com/        |
+| ACL4SSR       | 知名的规则转换网站               | https://acl4ssr-sub.github.io/ |
 
 
 
@@ -171,7 +172,7 @@ ruleset=🐟 漏网之鱼,[]FINAL
 
 ### 参考资料
 
-> 非常感谢ACL4SSR 和 blackmatrix7大佬的无私奉献
+> 非常感谢ACL4SSR&blackmatrix7&Tindy2013 等大佬的无私奉献
 
 * https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/Ruleset
 * https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash
