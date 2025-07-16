@@ -1,16 +1,42 @@
 ## 固件下载
 
+```ini
+OpenWrt
+  ├── LEDE (2016年分裂)
+  │       └── 2018年合并回 OpenWrt
+  │
+  ├── ImmortalWrt（基于 OpenWrt/LEDE，国内社区分支）
+  │
+  └── iStoreOS（基于 OpenWrt/ImmortalWrt/LeanWrt 等，主打易用性和插件）
+```
+
+
+
 ### 官方原版
 
-* https://github.com/openwrt/openwrt
+* OpenWrt
+    * https://github.com/openwrt/openwrt
+
+* ImmortalWrt
+    * https://github.com/immortalwrt/immortalwrt  📌
+
 
 
 
 ### 二次开发
 
-* Lean版 https://github.com/coolsnowwolf/lede
+* Lean版 (偶尔会打包闭源组件)
+    * https://github.com/coolsnowwolf/lede 
 
-* Lienol版 https://github.com/Lienol/openwrt
+* Lienol版 
+    * https://github.com/Lienol/openwrt
+
+* hanwckf版
+    * https://github.com/hanwckf/immortalwrt-mt798x
+
+
+*   iStoreOS
+    * https://github.com/istoreos/istoreos 📌
 
 
 
