@@ -113,15 +113,16 @@ https://github.com/sub-store-org/Sub-Store
 custom_proxy_group=🇭🇰 香港节点`url-test`(香港|HK|Hong Kong|Hongkong)`http://www.gstatic.com/generate_204`300,,100
 custom_proxy_group=🇨🇳 台湾节点`url-test`(台湾|TW|Taiwan)`http://www.gstatic.com/generate_204`300,,100
 custom_proxy_group=🇰🇷 韩国节点`url-test`(韩国|KR|Korea|KOR)`http://www.gstatic.com/generate_204`300,,100
-custom_proxy_group=🇯🇵 日本节点`url-test`(日本|JP|Japan)`http://www.gstatic.com/generate_204`300,,100
-custom_proxy_group=🇺🇲 美国节点`url-test`(美国|US|United States)`http://www.gstatic.com/generate_204`300,,100
+custom_proxy_group=🇯🇵 日本节点`url-test`(日本|JP|Japan|Tokyo)`http://www.gstatic.com/generate_204`300,,100
+custom_proxy_group=🇺🇲 美国节点`url-test`(美国|US|United States|Seattle)`http://www.gstatic.com/generate_204`300,,100
+custom_proxy_group=🇨🇦 加国节点`url-test`(加拿大|CA|Canada)`http://www.gstatic.com/generate_204`300,,100
 custom_proxy_group=🇸🇬 狮城节点`url-test`(狮城|新加坡|SG|Singapore)`http://www.gstatic.com/generate_204`300,,100
 
 # 手动选择
-custom_proxy_group=🇪🇺 欧洲国家`select`(俄罗斯|德国|土耳其|法国|英国|意大利|西班牙|乌克兰|波兰|荷兰|葡萄牙|比利时)
-custom_proxy_group=🎏 亚洲国家`select`(印度|印度尼西亚|土耳其|伊朗|泰国|巴基斯坦|菲律宾|马来西亚|越南|缅甸|柬埔寨)
+custom_proxy_group=🏰 欧洲国家`select`(俄罗斯|德国|土耳其|法国|英国|意大利|西班牙|乌克兰|波兰|荷兰|葡萄牙|比利时|爱尔兰|German|French|United Kingdom|London|Russia|Moscow)
+custom_proxy_group=🎏 亚洲国家`select`(澳门|朝鲜|印度|印度尼西亚|土耳其|伊朗|泰国|巴基斯坦|菲律宾|马来西亚|越南|缅甸|柬埔寨|India)
 custom_proxy_group=🗺︎ 美洲国家`select`(巴西|墨西哥|哥伦比亚|阿根廷|加拿大|秘鲁|委内瑞拉|智利|厄瓜多尔|玻利维亚)
-custom_proxy_group=🇦🇺 澳洲国家`select`(澳大利亚|巴布亚新几内亚|新西兰|新喀里多尼亚|斐济)
+custom_proxy_group=🦘 澳洲国家`select`(澳大利亚|巴布亚新几内亚|新西兰|新喀里多尼亚|斐济|Australia)
 ```
 
 
@@ -183,6 +184,7 @@ ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rul
 ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list
 ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs.list
 ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMedia/ChinaMedia.list
+ruleset=🚩 国内直连,https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/ProxyGroups/ProxyWhitelist.list
 
 # 广告拦截
 ruleset=🛑 广告拦截,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.list
