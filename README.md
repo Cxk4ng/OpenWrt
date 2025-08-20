@@ -131,69 +131,41 @@ custom_proxy_group=🦘 澳洲国家`select`(澳大利亚|巴布亚新几内亚|
 
 ```ini
 # 国外媒体
-ruleset=📹 YouTube,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list
-ruleset=🎥 Netflix,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list
-ruleset=🎵 Spotify,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Spotify/Spotify.list
-ruleset=🏰 Disney,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Disney/Disney.list
-ruleset=📺 Bahamut,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.list
+custom_proxy_group=📹 YouTube`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=🏰 Disney`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=🎥 Netflix`select`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇨🇳 台湾节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🇭🇰 香港节点`[]🇨🇦 加国节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=🎵 Spotify`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=📺 Bahamut`select`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇭🇰 香港节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
 
 # 社交应用
-ruleset=🕊 Twitter,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list
-ruleset=☎ Telegram,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram.list
-ruleset=📷 Instagram,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Instagram/Instagram.list
-ruleset=⚙️ TikTok,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list
+custom_proxy_group=🕊 Twitter`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=☎ Telegram`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=📷 Instagram`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=⚙️ TikTok`select`[]🇯🇵 日本节点`[]🇸🇬 狮城节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🇨🇳 台湾节点`[]🇭🇰 香港节点`[]🇨🇦 加国节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
 
 # 人工智能
-ruleset=🧠 OpenAI,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list
-ruleset=🌟 Gemini,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.list
-ruleset=👀 Copilot,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.list
+custom_proxy_group=🧠 OpenAI`select`[]🇯🇵 日本节点`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🇭🇰 香港节点`[]🇨🇦 加国节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=🌟 Gemini`select`[]🇯🇵 日本节点`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🇭🇰 香港节点`[]🇨🇦 加国节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
+custom_proxy_group=👀 Copilot`select`[]🇯🇵 日本节点`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🇭🇰 香港节点`[]🇨🇦 加国节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家
 
 # 游戏平台
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Xbox/Xbox.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Sony/Sony.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nintendo/Nintendo.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Rockstar/Rockstar.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Battle/Battle.list
-ruleset=🎮 Game,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.list
+custom_proxy_group=🎮 Game`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家`[]DIRECT
 
-# 苹果
-ruleset=🍎 Apple,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Apple/Apple.list
-ruleset=🍎 Apple,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleTV/AppleTV.list
-ruleset=🍎 Apple,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppStore/AppStore.list
-ruleset=🍎 Apple,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleNews/AppleNews.list
-ruleset=🍎 Apple,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleMusic/AppleMusic.list
-
-# 谷歌
-ruleset=📢 Google,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list
-ruleset=📢 Google,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTubeMusic/YouTubeMusic.list
-ruleset=📢 Google,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleSearch/GoogleSearch.list
-ruleset=📢 Google,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleDrive/GoogleDrive.list
-
-# 微软
-ruleset=Ⓜ️ Microsoft,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list
-ruleset=Ⓜ️ Microsoft,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list
-ruleset=Ⓜ️ Microsoft,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft.list
+# 苹/微/谷
+custom_proxy_group=🍎 Apple`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家`[]DIRECT
+custom_proxy_group=📢 Google`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家`[]DIRECT
+custom_proxy_group=Ⓜ️ Microsoft`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家`[]DIRECT
 
 # 国内直连
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMedia/ChinaMedia.list
-ruleset=🚩 国内直连,https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/ProxyGroups/ProxyWhitelist.list
+custom_proxy_group=🚩 国内直连`select`[]DIRECT
 
 # 广告拦截
-ruleset=🛑 广告拦截,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.list
-ruleset=🛑 广告拦截,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.list
-ruleset=🛑 广告拦截,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list
-ruleset=🛑 广告拦截,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EasyPrivacy/EasyPrivacy.list
+custom_proxy_group=🛑 广告拦截`select`[]REJECT
 
 # 漏网之鱼
-ruleset=🐟 漏网之鱼,[]FINAL
+custom_proxy_group=🐟 漏网之鱼`select`[]🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇰🇷 韩国节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇨🇦 加国节点`[]🇸🇬 狮城节点`[]🏰 欧洲国家`[]🦘 澳洲国家`[]🎏 亚洲国家`[]🗺︎ 美洲国家`[]DIRECT`[]REJECT
+
+
 ```
 
 
