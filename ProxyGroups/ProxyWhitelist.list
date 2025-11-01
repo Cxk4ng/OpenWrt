@@ -14,11 +14,11 @@ PROCESS-NAME,ToDesk.exe
 # Panda Player
 PROCESS-NAME,panda-player.exe
 
-# wsdashi.com
-DOMAIN-SUFFIX,wsdashi.com
-
 # AiChatos
 PROCESS-NAME,aichatos.exe
+
+# WindowsTerminal
+PROCESS-NAME,WindowsTerminal.exe
 
 # À¶×àÔÆ
 DOMAIN-SUFFIX,lanzous.com
