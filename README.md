@@ -98,13 +98,23 @@ https://github.com/sub-store-org/Sub-Store
 
 
 
-## 分流规则
+## 我的模板 📌
 
-### 我的模板
+> 推荐精简版 `大陆白名单模式` + `url-test`
+
+### 高大全
 
 * https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/ProxyGroups/rule.ini
 
+### 精简版
 
+* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/ProxyGroups/mini.ini
+
+
+
+
+
+## 分流规则
 
 ### 节点分类
 
@@ -124,8 +134,6 @@ custom_proxy_group=🏰 欧洲国家`select`(俄罗斯|德国|土耳其|法国|�
 custom_proxy_group=🗺︎ 美洲国家`select`(巴西|墨西哥|哥伦比亚|阿根廷|秘鲁|委内瑞拉|智利|厄瓜多尔|玻利维亚)
 custom_proxy_group=🦘 澳洲国家`select`(澳大利亚|巴布亚新几内亚|新西兰|新喀里多尼亚|斐济|Australia)
 ```
-
-
 
 
 
