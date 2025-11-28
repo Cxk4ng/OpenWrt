@@ -34,3 +34,6 @@ DOMAIN-SUFFIX,chiphell.com
 
 # MeDomain
 DOMAIN-SUFFIX,k4ng.org
+
+# WeChatAppEx
+PROCESS-NAME,WeChatAppEx.exe
