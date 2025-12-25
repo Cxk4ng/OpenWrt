@@ -1,8 +1,8 @@
 # MyProxyWhitelist
-# DOMAIN          |   ÍêÈ«Æ¥ÅäÓòÃû£¬ÀýÈç DOMAIN,google.com Æ¥Åä google.com£¬µ«²»Æ¥Åä www.google.com¡£
-# DOMAIN-SUFFIX   |   Æ¥ÅäÓòÃûºó×º£¬ÀýÈç DOMAIN-SUFFIX,google.com Æ¥Åä google.com ºÍ www.google.com¡£
-# DOMAIN-KEYWORD  |   ¹Ø¼ü´ÊÆ¥ÅäÓòÃû£¬ÀýÈç DOMAIN-KEYWORD,google Æ¥Åä google.com ºÍ google.jp¡£
-# PROCESS-NAME    |   ½ø³ÌÃû¹ýÂË
+# DOMAIN          |   å®Œå…¨åŒ¹é…åŸŸåï¼Œä¾‹å¦‚ DOMAIN,google.com åŒ¹é… google.comï¼Œä½†ä¸åŒ¹é… www.google.comã€‚
+# DOMAIN-SUFFIX   |   åŒ¹é…åŸŸååŽç¼€ï¼Œä¾‹å¦‚ DOMAIN-SUFFIX,google.com åŒ¹é… google.com å’Œ www.google.comã€‚
+# DOMAIN-KEYWORD  |   å…³é”®è¯åŒ¹é…åŸŸåï¼Œä¾‹å¦‚ DOMAIN-KEYWORD,google åŒ¹é… google.com å’Œ google.jpã€‚
+# PROCESS-NAME    |   è¿›ç¨‹åè¿‡æ»¤
 
 
 # Gda.wiki
@@ -14,13 +14,10 @@ PROCESS-NAME,ToDesk.exe
 # Panda Player
 PROCESS-NAME,panda-player.exe
 
-# AiChatos
-PROCESS-NAME,aichatos.exe
-
 # WindowsTerminal
 PROCESS-NAME,WindowsTerminal.exe
 
-# À¶×àÔÆ
+# è“å¥äº‘
 DOMAIN-SUFFIX,lanzous.com
 
 # BDDEmby
