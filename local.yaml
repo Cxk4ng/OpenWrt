@@ -44,7 +44,7 @@ lan-allowed-ips:            # 局域网允许IP
 
 
 # External Controller
-external-controller: 0.0.0.0:7891     # 控制端口 (表示允许局域网内其他设备访问) ❓ 和 mixed-port 混合端口 有啥区别?
+external-controller: 0.0.0.0:7891     # 外部控制台端口
 external-ui: ui                       # 本地 UI 文件夹名称
 secret: ""                            # 控制面板密码
 external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip' # 自动下载面板的地址
