@@ -1,0 +1,329 @@
+#Clash.Meta(mihomo)
+K4NG: &K4NG
+    interval: 43200           # 更新频率: 12h
+    health-check:
+        enable: true
+        url: 'https://www.gstatic.com/generate_204'
+        interval: 300         # 测速间隔: 5min
+        timeout: 5000         # 超时时间: 5s
+        lazy: true
+        expected-status: 204  # 期望状态码: 204
+
+
+# Proxy Providers
+proxy-providers:
+  CNIX:                                         # 节点集名
+    url: https://is.domainforsub.work/sub/9ef349b36621bea3/clash  # 订阅地址
+    type: http                                  # 请求协议
+    <<: *K4NG                                   # 引用测速模板
+    path: './proxy_provider/CNIX.yaml'          # 缓存路径
+    proxy: 🐟 国外代理                           # 代理
+    filter: '^(?!.*(?i)(?:NEVER_MATCH)).*$'     # 过滤正则
+
+
+# Global Configuration
+mixed-port: 7890            # 混合端口
+socks-port: 0               # SOCKS5端口 (0表示流量从mixed-port出去)
+port: 0                     # HTTP端口
+redir-port: 0               # 透明代理端口
+tproxy-port: 0              # TProxy端口
+mode: rule                  # 运行模式 (rule,global,direct)
+log-level: info             # 日志级别 (silent,error,warn,info,debug)
+ipv6: true                  # ipv6开关 (是否处理ipv6流量)
+find-process-mode: always   # 进程匹配模式
+authentication: []          # 身份验证 (空表示无密码即可连接)
+skip-auth-prefixes:         # 跳过验证前缀
+  - 127.0.0.1/32
+  - ::1/128
+allow-lan: true             # 允许局域网
+lan-disallowed-ips: []      # 局域网禁止IP
+bind-address: "*"           # 绑定监听地址
+lan-allowed-ips:            # 局域网允许IP
+  - 0.0.0.0/0
+  - ::/0
+
+
+# External Controller
+external-controller: 0.0.0.0:7891
+external-ui: ui
+secret: ""
+external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+external-controller-cors:
+  allow-origins:
+    - "*"
+  allow-private-network: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: chrome
+
+geodata-mode: true
+geo-auto-update: false
+geo-update-interval: 24
+geox-url:
+  geoip: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
+  geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
+  mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb'
+  asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb'
+
+
+# Tunnel Configuration
+tun:
+  enable: true
+  stack: mixed
+  device: mihomo
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  strict-route: true
+  mtu: 1500
+  route-exclude-address: []
+
+
+# DNS Configuration
+dns:
+  enable: true
+  cache-algorithm: arc
+  ipv6: true
+  enhanced-mode: fake-ip
+  nameserver:
+    - quic://223.5.5.5
+
+  # 常见“国外站点”强制走国外 DNS（避免解析到国内/污染）
+  nameserver-policy:
+    "geosite:geolocation-!cn":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    "geosite:cn":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "geosite:private":
+      - system
+
+  fake-ip-range: 198.18.0.1/15
+  fake-ip-filter:
+    # 内网与本机
+    - DOMAIN,localhost
+    - DOMAIN-SUFFIX,local
+    - DOMAIN-SUFFIX,lan
+    # Windows 连通性检测
+    - DOMAIN-SUFFIX,msftncsi.com
+    - DOMAIN-SUFFIX,msftconnecttest.com
+
+
+# Sniffer Configuration
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+    TLS:
+      ports:
+        - 443
+        - 8443
+    QUIC:
+      ports:
+        - 443
+        - 8443
+
+
+# Node Filters
+HK: &HK
+  '(香港|HK|Hong Kong|Hongkong)'
+
+TW: &TW
+  '(台湾|TW|Taiwan)'
+
+KR: &KR
+  '(韩国|KR|Korea|KOR)'
+
+JP: &JP
+  '(日本|JP|Japan|Tokyo)'
+
+SG: &SG
+  '(狮城|新加坡|SG|Singapore)'
+
+US: &US
+  '(美国|US|United States|Seattle)'
+
+CA: &CA
+  '(加拿大|CA|Canada)'
+
+Asia: &AS
+  '(澳门|朝鲜|印度|印度尼西亚|印尼|土耳其|伊朗|泰国|巴基斯坦|菲律宾|马来西亚|越南|缅甸|柬埔寨|迪拜|以色列|阿联酋|India)'
+
+Europe: &EU
+  '(俄罗斯|德国|土耳其|法国|英国|意大利|西班牙|乌克兰|波兰|荷兰|葡萄牙|比利时|爱尔兰|匈牙利|摩尔多瓦|German|French|United Kingdom|London|Russia|Moscow)'
+
+America: &AM
+  '(巴西|墨西哥|哥伦比亚|阿根廷|秘鲁|委内瑞拉|智利|厄瓜多尔|玻利维亚)'
+
+Oceania: &OC
+  '(澳大利亚|巴布亚新几内亚|新西兰|新喀里多尼亚|斐济|悉尼|Australia)'
+
+Africa: &AF
+  '(南非|埃及|尼日利亚|South Africa|Egypt)'
+
+# Proxy Group Templates
+Auto: &Auto
+  type: url-test          # 策略组类型: 自动
+  url: 'https://www.gstatic.com/generate_204'
+  expected-status: 204    # 期望状态码: 204
+  interval: 300           # 测速间隔: 5min
+  timeout: 5000           # 超时时间: 5s
+  lazy: true              # 懒加载模式
+  tolerance: 5            # 容差值: 5ms
+  disable-udp: false      # 禁用UDP开关 (允许udp通过)
+  hidden: false           # 隐藏开关 (界面可见)
+  include-all: true       # 包含所有节点
+
+Select: &Select
+  type: select            # 策略组类型: 手动
+  disable-udp: false      # 禁用UDP开关:
+  hidden: false           # 隐藏开关 (false表示界面可见)
+  include-all: true       # 包含所有节点
+
+# Proxy Groups
+proxy-groups:
+  # Auto
+  - name: 🇭🇰 香港节点
+    <<: *Auto
+    filter: *HK
+
+  - name: 🇨🇳 台湾节点
+    <<: *Auto
+    filter: *TW
+
+  - name: 🇰🇷 韩国节点
+    <<: *Auto
+    filter: *KR
+
+  - name: 🇯🇵 日本节点
+    <<: *Auto
+    filter: *JP
+
+  - name: 🇸🇬 狮城节点
+    <<: *Auto
+    filter: *SG
+
+  - name: 🇺🇲 美国节点
+    <<: *Auto
+    filter: *US
+
+  - name: 🇨🇦 加国节点
+    <<: *Auto
+    filter: *CA
+
+  - name: 🎏 亚洲国家
+    <<: *Select
+    filter: *AS
+
+  - name: 🏰 欧洲国家
+    <<: *Select
+    filter: *EU
+
+  - name: 🗺︎ 美洲国家
+    <<: *Select
+    filter: *AM
+
+  - name: 🦘 澳洲国家
+    <<: *Select
+    filter: *OC
+
+  - name: 🌍 非洲国家
+    <<: *Select
+    filter: *AF
+
+  - name: 🐟 国外代理
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🌍 非洲国家
+    ]
+
+
+# Rule Providers
+rule-providers:
+  # LAN
+  LAN:                      # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml'
+    path: './rule_set/Lan.list'
+
+  # China
+  China:                    # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China.list'
+    path: './rule_set/China.list'
+
+  # Direct
+  Direct:                   # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.list'
+    path: './rule_set/Direct.list'
+
+  # ChinaMax
+  ChinaMax:                 # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list'
+    path: './rule_set/ChinaMax.list'
+
+  # ChinaIPs
+  ChinaIPs:                 # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs.list'
+    path: './rule_set/ChinaIPs.list'
+
+  # ChinaMedia
+  ChinaMedia:               # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMedia/ChinaMedia.list'
+    path: './rule_set/ChinaMedia.list'
+
+  # ProxyWhitelist
+  ProxyWhitelist:           # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/rule/ProxyWhitelist.list'
+    path: './rule_set/ProxyWhitelist.list'
+
+
+# Rules
+rules:
+  - RULE-SET,LAN,DIRECT
+  - RULE-SET,China,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,ChinaIPs,DIRECT
+  - RULE-SET,ChinaMedia,DIRECT
+  - RULE-SET,ProxyWhitelist,DIRECT
+  - MATCH,🐟 国外代理
