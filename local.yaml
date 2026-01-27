@@ -12,13 +12,13 @@ MetaCfg: &MetaCfg
 
 # Proxy Providers
 proxy-providers:
-  SubName:                                      # 节点集名
-    url: 'https://你的机场订阅地址'             # 订阅地址
-    type: http                                  # 请求协议
-    <<: *MetaCfg                                # 引用测速模板
-    path: './proxy_provider/SubName.yaml'       # 缓存路径
-    proxy: 🐟 国外代理                          # 代理
-    filter: '^(?!.*(?i)(?:NEVER_MATCH)).*$'     # 过滤正则
+  SubName:                                   # 节点集名
+    url: 'Subscription URL'                  # 订阅地址
+    type: http                               # 请求协议
+    <<: *MetaCfg                             # 引用测速模板
+    path: './proxy_provider/SubName.yaml'    # 缓存路径
+    proxy: 🐟 国外代理                        # 代理
+    filter: '^(?!.*(?i)(?:NEVER_MATCH)).*$'  # 过滤正则
 
 
 # Global Configuration
@@ -44,27 +44,23 @@ lan-allowed-ips:            # 局域网允许IP
 
 
 # External Controller
-external-controller: 0.0.0.0:7891
-external-ui: ui
-secret: ""
-external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-external-controller-cors:
-  allow-origins:
-    - "*"
-  allow-private-network: true
-
+external-controller: 0.0.0.0:7891     # 控制端口 (表示允许局域网内其他设备访问) ❓ 和 mixed-port 混合端口 有啥区别?
+external-ui: ui                       # 本地 UI 文件夹名称
+secret: ""                            # 控制面板密码
+external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip' # 自动下载面板的地址
+external-controller-cors:             # 跨域设置
+  allow-origins: ["*"]
+  allow-private-network: true         # 允许私有网络访问
 profile:
-  store-selected: true
-  store-fake-ip: true
-
-unified-delay: true
-tcp-concurrent: true
-global-client-fingerprint: chrome
-
-geodata-mode: true
-geo-auto-update: false
-geo-update-interval: 24
-geox-url:
+  store-selected: true                # 记忆功能 (重启后自动选择上次选择节点)
+  store-fake-ip: true                 # 记忆Fake-IP (重启后保持IP映射表)
+unified-delay: true                   # 统一延迟 (计算延迟时包含握手时间)
+tcp-concurrent: true                  # TCP并发请求测速
+global-client-fingerprint: chrome     # 浏览器指纹
+geodata-mode: true                    # 开启 GeoData 模式
+geo-auto-update: false                # 是否自动更新数据库
+geo-update-interval: 24               # 更新间隔（单位：小时）
+geox-url:                             # 数据库下载地址
   geoip: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
   geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
   mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb'
@@ -72,64 +68,60 @@ geox-url:
 
 
 # Tunnel Configuration
-tun:
-  enable: true
-  stack: mixed
-  device: mihomo
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  dns-hijack:
+tun:                                    # 虚拟网卡配置
+  enable: false                         # 是否开启TUN模式
+  stack: mixed                          # 协议栈方案：混合模式
+  device: Clash.Meta                    # 虚拟网卡名字
+  auto-route: true                      # 自动设置路由 (自动将系统流量引流到这块虚拟网卡)
+  auto-redirect: true                   # 自动重定向
+  auto-detect-interface: true           # 自动检测出口网卡 (防止流量环路)
+  dns-hijack:                           # DNS劫持
     - any:53
     - tcp://any:53
-  strict-route: true
-  mtu: 1500
-  route-exclude-address: []
+  strict-route: true                    # 严格路由模式 (强制所有流量通过 TUN)
+  mtu: 1500                             # 最大传输单元
+  route-exclude-address: []             # 路由排除列表
 
 
 # DNS Configuration
 dns:
-  enable: true
-  cache-algorithm: arc
-  ipv6: true
-  enhanced-mode: fake-ip
-  nameserver:
-    - quic://223.5.5.5
-
-  # 常见“国外站点”强制走国外 DNS（避免解析到国内/污染）
+  enable: true                          # 开启Clash内部DNS服务器 (务必开启否则无法分流)
+  cache-algorithm: arc                  # 使用ARC缓存算法 (抗污染能力强 命中率高)
+  ipv6: true                            # 开启IPv6解析
+  enhanced-mode: fake-ip                # 增强模式：Fake-IP (先返回假ip请求 后台解析真实ip在发送前掉包)
+  nameserver:                           # 并发解析以下dns服务
+    - system                            # 系统/运营商/路由器默认 (最快)
+    - https://dns.alidns.com/dns-query  # 阿里 DNS (加密防劫持)
+    - https://doh.pub/dns-query         # 腾讯 DNS (国内稳定)
   nameserver-policy:
-    "geosite:geolocation-!cn":
+    "geosite:geolocation-!cn":          # 国外域名 (GeoSite数据库判定)
       - https://1.1.1.1/dns-query
       - https://8.8.8.8/dns-query
-    "geosite:cn":
+    "geosite:cn":                       # 国内域名 (GeoSite数据库判定)
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-    "geosite:private":
+    "geosite:private":                  # 私有域名
       - system
-  fake-ip-range: 198.18.0.1/15
-  fake-ip-filter:
-    # 内网与本机
-    - DOMAIN,localhost
+  fake-ip-range: 198.18.0.1/15          # Fake-IP白名单
+  fake-ip-filter:                       # 以下IP不返回假IP
+    - DOMAIN,localhost                  # 内网与本机
     - DOMAIN-SUFFIX,local
     - DOMAIN-SUFFIX,lan
-    # Windows 连通性检测
-    - DOMAIN-SUFFIX,msftncsi.com
-    - DOMAIN-SUFFIX,msftconnecttest.com
 
 
 # Sniffer Configuration
-sniffer:
-  enable: true
+sniffer:                              # 用来配合 Fake-IP 还原被隐藏的真实域名
+  enable: true                        # 开启嗅探功能 (Fake-IP模式必开)
   sniff:
-    HTTP:
+    HTTP:                             # 针对 HTTP 协议的嗅探
       ports:
         - 80
         - 8080-8880
-    TLS:
+    TLS:                              # 针对 TLS（HTTPS）协议的嗅探
       ports:
         - 443
         - 8443
-    QUIC:
+    QUIC:                             # 针对 QUIC 协议的嗅探
       ports:
         - 443
         - 8443
