@@ -267,14 +267,13 @@ rule-providers:
 
 # Rules
 rules:
-  # 本地&私有网络
   - DOMAIN-SUFFIX,localhost,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve 
-  - GEOSITE,CN,DIRECT                    # 国内域名
-  - GEOIP,CN,DIRECT                      # 国内IP
-  - GEOIP,!CN,🐟 国外代理                # 国外IP
+  - GEOSITE,CN,DIRECT                   # 国内域名
   - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名
-  - MATCH,DIRECT                         # 以上未匹配
+  - GEOIP,CN,DIRECT                     # 国内IP
+  - GEOIP,!CN,🐟 国外代理                # 国外IP
+  - MATCH,DIRECT                        # 以上未匹配
