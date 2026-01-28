@@ -275,5 +275,6 @@ rules:
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve 
   - GEOSITE,CN,DIRECT                    # 国内域名
   - GEOIP,CN,DIRECT                      # 国内IP
+  - GEOIP,!CN,🐟 国外代理                # 国外IP
   - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名
   - MATCH,DIRECT                         # 以上未匹配
