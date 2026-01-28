@@ -251,54 +251,9 @@ rule-providers:
     type: http              # 获取类型
     behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
     interval: 43200         # 更新频率: 12h
-    proxy: 🐟 国外代理      # 下载时使用的代理
+    proxy: 🐟 国外代理       # 下载时使用的代理
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml'
     path: './rule_set/Lan.list'
-
-  # China
-  China:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China.list'
-    path: './rule_set/China.list'
-
-  # Direct
-  Direct:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.list'
-    path: './rule_set/Direct.list'
-
-  # ChinaMax
-  ChinaMax:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list'
-    path: './rule_set/ChinaMax.list'
-
-  # ChinaIPs
-  ChinaIPs:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs.list'
-    path: './rule_set/ChinaIPs.list'
-
-  # ChinaMedia
-  ChinaMedia:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMedia/ChinaMedia.list'
-    path: './rule_set/ChinaMedia.list'
 
   # ProxyWhitelist
   ProxyWhitelist:
@@ -312,11 +267,13 @@ rule-providers:
 
 # Rules
 rules:
-  - RULE-SET,LAN,DIRECT
-  - RULE-SET,China,DIRECT
-  - RULE-SET,Direct,DIRECT
-  - RULE-SET,ChinaMax,DIRECT
-  - RULE-SET,ChinaIPs,DIRECT
-  - RULE-SET,ChinaMedia,DIRECT
-  - RULE-SET,ProxyWhitelist,DIRECT
-  - MATCH,🐟 国外代理
+  # 本地&私有网络
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve 
+  - GEOSITE,CN,DIRECT                    # 国内域名
+  - GEOIP,CN,DIRECT                      # 国内IP
+  - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名
+  - MATCH,DIRECT                         # 以上未匹配
