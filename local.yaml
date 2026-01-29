@@ -89,26 +89,26 @@ dns:
   cache-algorithm: arc                  # 使用ARC缓存算法 (抗污染能力强 命中率高)
   ipv6: true                            # 开启IPv6解析
   enhanced-mode: fake-ip                # 增强模式：Fake-IP (先返回假ip请求 后台解析真实ip在发送前掉包)
-  nameserver:                           # 并发解析以下dns服务
-    - system                            # 系统/运营商/路由器默认 (最快)
-    - https://dns.alidns.com/dns-query  # 阿里 DNS (加密防劫持)
-    - https://doh.pub/dns-query         # 腾讯 DNS (国内稳定)
-  nameserver-policy:
-    "geosite:geolocation-!cn":          # 国外域名 (GeoSite数据库判定)
-      - https://1.1.1.1/dns-query
-      - https://8.8.8.8/dns-query
-    "geosite:cn":                       # 国内域名 (GeoSite数据库判定)
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    "geosite:private":                  # 私有域名
-      - system
   fake-ip-range: 198.18.0.1/15          # Fake-IP白名单
-  fake-ip-filter:                       # 以下IP不返回假IP
-    - DOMAIN,localhost                  # 内网与本机
-    - DOMAIN-SUFFIX,local
-    - DOMAIN-SUFFIX,lan
+  fake-ip-filter:
+  - '*.lan'
+  - '*.local'
+  - localhost.ptlogin2.qq.com
+  nameserver:                           # 并发解析以下dns服务
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  - 8.8.8.8
+  fallback:
+  - https://1.1.1.1/dns-query
+  - https://8.8.8.8/dns-query
+  - https://dns.google/dns-query
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 240.0.0.0/4
 
-
+    
 # Sniffer Configuration
 sniffer:                                # 用来配合 Fake-IP 还原被隐藏的真实域名
   enable: true                          # 开启嗅探功能 (Fake-IP模式必开)
