@@ -1,0 +1,725 @@
+#Clash.Meta(mihomo)
+MetaCfg: &MetaCfg
+    interval: 43200                                     # 更新频率: 12h
+    health-check:
+        enable: true
+        url: 'https://www.gstatic.com/generate_204'     # 测速链接
+        interval: 300                                   # 测速间隔: 5min
+        timeout: 5000                                   # 超时时间: 5s
+        lazy: true
+        expected-status: 204                            # 期望状态码: 204
+
+
+# 机场订阅
+proxy-providers:
+  provider:                                  # 节点集名
+    url: 'Subscription'                      # 订阅地址
+    type: http                               # 请求协议
+    <<: *MetaCfg                             # 引用测速模板
+    path: './proxy_provider/provider.yaml'   # 缓存路径
+    proxy: 🐟 国外代理                        # 代理
+    filter: '^(?!.*(?i)(?:NEVER_MATCH)).*$'  # 过滤正则
+
+
+# 全局配置
+mixed-port: 7890            # 混合端口
+socks-port: 0               # SOCKS5端口 (0表示流量从mixed-port出去)
+port: 0                     # HTTP端口
+redir-port: 0               # 透明代理端口
+tproxy-port: 0              # TProxy端口
+mode: rule                  # 运行模式 (rule,global,direct)
+log-level: info             # 日志级别 (silent,error,warn,info,debug)
+ipv6: true                  # ipv6开关 (是否处理ipv6流量)
+find-process-mode: always   # 进程匹配模式
+authentication: []          # 身份验证 (空表示无密码即可连接)
+skip-auth-prefixes:         # 跳过验证前缀
+  - 127.0.0.1/32
+  - ::1/128
+allow-lan: true             # 允许局域网
+lan-disallowed-ips: []      # 局域网禁止IP
+bind-address: "*"           # 绑定监听地址
+lan-allowed-ips:            # 局域网允许IP
+  - 0.0.0.0/0
+  - ::/0
+
+
+# 控制面板
+external-controller: 0.0.0.0:7891       # 外部控制台端口
+external-ui: ui                         # 本地 UI 文件夹名称
+secret: ""                              # 控制面板密码
+external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip' # 自动下载面板的地址
+external-controller-cors:               # 跨域设置
+  allow-origins: ["*"]
+  allow-private-network: true           # 允许私有网络访问
+profile:
+  store-selected: true                  # 记忆功能 (重启后自动选择上次选择节点)
+  store-fake-ip: true                   # 记忆Fake-IP (重启后保持IP映射表)
+unified-delay: true                     # 统一延迟 (计算延迟时包含握手时间)
+tcp-concurrent: true                    # TCP并发请求测速
+global-client-fingerprint: chrome       # 浏览器指纹
+geodata-mode: true                      # 开启 GeoData 模式
+geo-auto-update: false                  # 是否自动更新数据库
+geo-update-interval: 24                 # 更新间隔（单位：小时）
+geox-url:                               # 数据库下载地址
+  geoip: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
+  geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
+  mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb'
+  asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb'
+
+
+# TUN配置
+tun:                                    # 虚拟网卡配置
+  enable: false                         # 是否开启TUN模式
+  stack: mixed                          # 协议栈方案：混合模式
+  device: Clash.Meta                    # 虚拟网卡名字
+  auto-route: true                      # 自动设置路由 (自动将系统流量引流到这块虚拟网卡)
+  auto-redirect: true                   # 自动重定向
+  auto-detect-interface: true           # 自动检测出口网卡 (防止流量环路)
+  dns-hijack:                           # DNS劫持
+    - any:53
+    - tcp://any:53
+  strict-route: true                    # 严格路由模式 (强制所有流量通过 TUN)
+  mtu: 1500                             # 最大传输单元
+  route-exclude-address: []             # 路由排除列表
+
+
+# DNS配置
+dns:
+  enable: true                          # 开启Clash内部DNS服务器 (务必开启否则无法分流)
+  cache-algorithm: arc                  # 使用ARC缓存算法 (抗污染能力强 命中率高)
+  ipv6: true                            # 开启IPv6解析
+  enhanced-mode: fake-ip                # 增强模式：Fake-IP (先返回假ip请求 后台解析真实ip在发送前掉包)
+  fake-ip-range: 198.18.0.1/15          # Fake-IP白名单
+  fake-ip-filter:
+  - '*.lan'
+  - '*.local'
+  - localhost.ptlogin2.qq.com
+  nameserver:                           # 并发解析以下dns服务
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  - 8.8.8.8
+  fallback:
+  - https://1.1.1.1/dns-query
+  - https://8.8.8.8/dns-query
+  - https://dns.google/dns-query
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 240.0.0.0/4
+
+
+# 流量嗅探
+sniffer:                                # 用来配合 Fake-IP 还原被隐藏的真实域名
+  enable: true                          # 开启嗅探功能 (Fake-IP模式必开)
+  sniff:
+    HTTP:                               # 针对 HTTP 协议的嗅探
+      ports:
+        - 80
+        - 8080-8880
+    TLS:                                # 针对 TLS（HTTPS）协议的嗅探
+      ports:
+        - 443
+        - 8443
+    QUIC:                               # 针对 QUIC 协议的嗅探
+      ports:
+        - 443
+        - 8443
+
+
+# 节点过滤
+HK: &HK
+  '(香港|HK|Hong Kong|Hongkong)'
+
+TW: &TW
+  '(台湾|TW|Taiwan)'
+
+KR: &KR
+  '(韩国|KR|Korea|KOR)'
+
+JP: &JP
+  '(日本|JP|Japan|Tokyo)'
+
+SG: &SG
+  '(狮城|新加坡|SG|Singapore)'
+
+US: &US
+  '(美国|US|United States|Seattle)'
+
+CA: &CA
+  '(加拿大|CA|Canada)'
+
+Asia: &AS
+  '(澳门|朝鲜|印度|印度尼西亚|印尼|土耳其|伊朗|泰国|巴基斯坦|菲律宾|马来西亚|越南|缅甸|柬埔寨|迪拜|以色列|阿联酋|India)'
+
+Europe: &EU
+  '(俄罗斯|德国|土耳其|法国|英国|意大利|西班牙|乌克兰|波兰|荷兰|葡萄牙|比利时|爱尔兰|匈牙利|摩尔多瓦|German|French|United Kingdom|London|Russia|Moscow)'
+
+America: &AM
+  '(巴西|墨西哥|哥伦比亚|阿根廷|秘鲁|委内瑞拉|智利|厄瓜多尔|玻利维亚)'
+
+Oceania: &OC
+  '(澳大利亚|巴布亚新几内亚|新西兰|新喀里多尼亚|斐济|悉尼|Australia)'
+
+Africa: &AF
+  '(南非|埃及|尼日利亚|South Africa|Egypt)'
+
+
+# 代理模板
+Auto: &Auto
+  type: url-test          # 策略组类型: 自动
+  url: 'https://www.gstatic.com/generate_204'
+  expected-status: 204    # 期望状态码: 204
+  interval: 300           # 测速间隔: 5min
+  timeout: 5000           # 超时时间: 5s
+  lazy: true              # 懒加载模式
+  tolerance: 5            # 容差值: 5ms
+  disable-udp: false      # 禁用UDP开关 (允许udp通过)
+  hidden: false           # 隐藏开关 (界面可见)
+  include-all: true       # 包含所有节点
+
+Select: &Select
+  type: select            # 策略组类型: 手动
+  disable-udp: false      # 禁用UDP开关:
+  hidden: false           # 隐藏开关 (false表示界面可见)
+  include-all: true       # 包含所有节点
+
+
+# 策略组
+proxy-groups:
+  - name: 🎬 YouTube
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 📽️ Netflix
+    type: select
+    proxies: [
+      🇸🇬 狮城节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🏰 Disney
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🎵 Spotify
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: ▶️ PrimeVideo
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 📺 BiliBiliIntl
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 👘 Bahamut
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 💬 Niconico
+    type: select
+    proxies: [
+      🇯🇵 日本节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🔴 Twitch
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🕊️ Twitter
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: ✈️ Telegram
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 👥 Facebook
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🎧 Discord
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 💃 TikTok
+    type: select
+    proxies: [
+      🇯🇵 日本节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🤖 Reddit
+    type: select
+    proxies: [
+      🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🧠 OpenAI
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🌟 Gemini
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: ☕ Claude
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 👀 Copilot
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🕹️ Epic
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🙅 Xbox
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 💨 Steam
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🍄 Nintendo
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🎮 PlayStation
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: ☁️ iCloud
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🛒 AppStore
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🍿 AppleTV
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🐟 国外代理
+    type: select
+    proxies: [
+      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
+    ]
+
+  - name: 🇭🇰 香港节点
+    <<: *Auto
+    filter: *HK
+
+  - name: 🇨🇳 台湾节点
+    <<: *Auto
+    filter: *TW
+
+  - name: 🇰🇷 韩国节点
+    <<: *Auto
+    filter: *KR
+
+  - name: 🇯🇵 日本节点
+    <<: *Auto
+    filter: *JP
+
+  - name: 🇸🇬 狮城节点
+    <<: *Auto
+    filter: *SG
+
+  - name: 🇺🇲 美国节点
+    <<: *Auto
+    filter: *US
+
+  - name: 🇨🇦 加国节点
+    <<: *Auto
+    filter: *CA
+
+  - name: 🎏 亚洲国家
+    <<: *Select
+    filter: *AS
+
+  - name: 🏰 欧洲国家
+    <<: *Select
+    filter: *EU
+
+  - name: 🗺︎ 美洲国家
+    <<: *Select
+    filter: *AM
+
+  - name: 🦘 澳洲国家
+    <<: *Select
+    filter: *OC
+
+  - name: ☀️ 非洲国家
+    <<: *Select
+    filter: *AF
+
+
+# 规则订阅
+rule-providers:
+  YouTube:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml'
+    path: './rule_set/YouTube.list'
+
+  Netflix:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml'
+    path: './rule_set/Netflix.list'
+
+  Disney:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml'
+    path: './rule_set/Disney.list'
+
+  Spotify:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml'
+    path: './rule_set/Spotify.list'
+
+  PrimeVideo:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.yaml'
+    path: './rule_set/PrimeVideo.list'
+
+  BiliBiliIntl:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml'
+    path: './rule_set/BiliBiliIntl.list'
+
+  Bahamut:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml'
+    path: './rule_set/Bahamut.list'
+
+  Niconico:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Niconico/Niconico.yaml'
+    path: './rule_set/Niconico.list'
+
+  Twitch:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch.yaml'
+    path: './rule_set/Twitch.list'
+
+  Twitter:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml'
+    path: './rule_set/Twitter.list'
+
+  Telegram:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml'
+    path: './rule_set/Telegram.list'
+
+  Facebook:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml'
+    path: './rule_set/Facebook.list'
+
+  Discord:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml'
+    path: './rule_set/Discord.list'
+
+  TikTok:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml'
+    path: './rule_set/TikTok.list'
+
+  Reddit:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml'
+    path: './rule_set/Reddit.list'
+
+  OpenAI:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml'
+    path: './rule_set/OpenAI.list'
+
+  Gemini:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml'
+    path: './rule_set/Gemini.list'
+
+  Claude:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml'
+    path: './rule_set/Claude.list'
+
+  Copilot:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml'
+    path: './rule_set/Copilot.list'
+
+  Epic:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml'
+    path: './rule_set/Epic.list'
+
+  Xbox:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox.yaml'
+    path: './rule_set/Xbox.list'
+
+  Steam:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml'
+    path: './rule_set/Steam.list'
+
+  Nintendo:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml'
+    path: './rule_set/Nintendo.list'
+
+  PlayStation:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PlayStation/PlayStation.yaml'
+    path: './rule_set/PlayStation.list'
+
+  iCloud:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/iCloud/iCloud.yaml'
+    path: './rule_set/iCloud.list'
+
+  AppStore:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppStore/AppStore.yaml'
+    path: './rule_set/AppStore.list'
+
+  AppleTV:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleTV/AppleTV.yaml'
+    path: './rule_set/AppleTV.list'
+
+  LAN:                      # 规则集名称
+    type: http              # 获取类型
+    behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
+    interval: 43200         # 更新频率: 12h
+    proxy: 🐟 国外代理       # 下载时使用的代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml'
+    path: './rule_set/Lan.list'
+
+  ProxyWhitelist:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/rule/ProxyWhitelist.list'
+    path: './rule_set/ProxyWhitelist.list'
+
+
+# 规则配置
+rules:
+  # 局域网及本地规则 (最高优先级)
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - RULE-SET,LAN,DIRECT
+  - RULE-SET,ProxyWhitelist,DIRECT
+
+  # 人工智能
+  - RULE-SET,OpenAI,🧠 OpenAI
+  - RULE-SET,Gemini,🌟 Gemini
+  - RULE-SET,Claude,☕ Claude
+  - RULE-SET,Copilot,👀 Copilot
+
+  # 社交应用
+  - RULE-SET,Telegram,✈️ Telegram
+  - RULE-SET,Twitter,🕊️ Twitter
+  - RULE-SET,Facebook,👥 Facebook
+  - RULE-SET,Discord,🎧 Discord
+  - RULE-SET,TikTok,💃 TikTok
+  - RULE-SET,Reddit,🤖 Reddit
+
+  # 国外媒体
+  - RULE-SET,YouTube,🎬 YouTube
+  - RULE-SET,Netflix,📽️ Netflix
+  - RULE-SET,Disney,🏰 Disney
+  - RULE-SET,Spotify,🎵 Spotify
+  - RULE-SET,PrimeVideo,▶️ PrimeVideo
+  - RULE-SET,BiliBiliIntl,📺 BiliBiliIntl
+  - RULE-SET,Bahamut,👘 Bahamut
+  - RULE-SET,Niconico,💬 Niconico
+  - RULE-SET,Twitch,🔴 Twitch
+
+  # 游戏平台
+  - RULE-SET,Epic,🕹️ Epic
+  - RULE-SET,Xbox,🙅 Xbox
+  - RULE-SET,Steam,💨 Steam
+  - RULE-SET,Nintendo,🍄 Nintendo
+  - RULE-SET,PlayStation,🎮 PlayStation
+
+  # Apple服务
+  - RULE-SET,iCloud,☁️ iCloud
+  - RULE-SET,AppStore,🛒 AppStore
+  - RULE-SET,AppleTV,🍿 AppleTV
+
+  # 其他分流规则 (兜底前)
+  - GEOSITE,CN,DIRECT                   # 国内域名直连
+  - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名代理
+  - GEOIP,CN,DIRECT                     # 国内IP直连
+  - GEOIP,!CN,🐟 国外代理                # 国外IP代理
+
+  # 最终兜底 (MATCH)
+  - MATCH,DIRECT                        # 未匹配到的流量直连 (防止流量意外流失)

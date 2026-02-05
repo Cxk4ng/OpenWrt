@@ -10,7 +10,7 @@ MetaCfg: &MetaCfg
         expected-status: 204                            # 期望状态码: 204
 
 
-# Proxy Providers
+# 机场订阅
 proxy-providers:
   provider:                                  # 节点集名
     url: 'Subscription'                      # 订阅地址
@@ -21,7 +21,7 @@ proxy-providers:
     filter: '^(?!.*(?i)(?:NEVER_MATCH)).*$'  # 过滤正则
 
 
-# Global Configuration
+# 全局配置
 mixed-port: 7890            # 混合端口
 socks-port: 0               # SOCKS5端口 (0表示流量从mixed-port出去)
 port: 0                     # HTTP端口
@@ -43,7 +43,7 @@ lan-allowed-ips:            # 局域网允许IP
   - ::/0
 
 
-# External Controller
+# 控制面板
 external-controller: 0.0.0.0:7891       # 外部控制台端口
 external-ui: ui                         # 本地 UI 文件夹名称
 secret: ""                              # 控制面板密码
@@ -67,7 +67,7 @@ geox-url:                               # 数据库下载地址
   asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb'
 
 
-# Tunnel Configuration
+# TUN配置
 tun:                                    # 虚拟网卡配置
   enable: false                         # 是否开启TUN模式
   stack: mixed                          # 协议栈方案：混合模式
@@ -83,7 +83,7 @@ tun:                                    # 虚拟网卡配置
   route-exclude-address: []             # 路由排除列表
 
 
-# DNS Configuration
+# DNS配置
 dns:
   enable: true                          # 开启Clash内部DNS服务器 (务必开启否则无法分流)
   cache-algorithm: arc                  # 使用ARC缓存算法 (抗污染能力强 命中率高)
@@ -108,8 +108,8 @@ dns:
     ipcidr:
     - 240.0.0.0/4
 
-    
-# Sniffer Configuration
+
+# 流量嗅探
 sniffer:                                # 用来配合 Fake-IP 还原被隐藏的真实域名
   enable: true                          # 开启嗅探功能 (Fake-IP模式必开)
   sniff:
@@ -127,7 +127,7 @@ sniffer:                                # 用来配合 Fake-IP 还原被隐藏�
         - 8443
 
 
-# Node Filters
+# 节点过滤
 HK: &HK
   '(香港|HK|Hong Kong|Hongkong)'
 
@@ -165,7 +165,7 @@ Africa: &AF
   '(南非|埃及|尼日利亚|South Africa|Egypt)'
 
 
-# Proxy Group Templates
+# 代理模板
 Auto: &Auto
   type: url-test          # 策略组类型: 自动
   url: 'https://www.gstatic.com/generate_204'
@@ -185,7 +185,7 @@ Select: &Select
   include-all: true       # 包含所有节点
 
 
-# Proxy Groups
+# 策略组
 proxy-groups:
   # Auto
   - name: 🇭🇰 香港节点
@@ -232,7 +232,7 @@ proxy-groups:
     <<: *Select
     filter: *OC
 
-  - name: 🌍 非洲国家
+  - name: ☀️ 非洲国家
     <<: *Select
     filter: *AF
 
@@ -240,13 +240,12 @@ proxy-groups:
     type: select
     proxies: [
       🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🌍 非洲国家
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, ☀️ 非洲国家
     ]
 
 
-# Rule Providers
+# 规则订阅
 rule-providers:
-  # LAN
   LAN:                      # 规则集名称
     type: http              # 获取类型
     behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
@@ -255,7 +254,6 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml'
     path: './rule_set/Lan.list'
 
-  # ProxyWhitelist
   ProxyWhitelist:
     type: http
     behavior: classical
@@ -265,7 +263,7 @@ rule-providers:
     path: './rule_set/ProxyWhitelist.list'
 
 
-# Rules
+# 规则配置
 rules:
   - DOMAIN-SUFFIX,localhost,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve

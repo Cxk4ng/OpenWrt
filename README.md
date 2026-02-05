@@ -101,20 +101,21 @@ OpenWrt
 
 ## 配置模板 📌
 
-> 推荐精简版(local.yaml | remote-mini.ini) `大陆白名单模式` + `url-test`
+> 推荐精简版(local-lite.yaml | remote-lite.ini) `大陆白名单模式` + `url-test`
 
 
 
 ### 远程配置
 
-* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/remote-mini.ini
+* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/remote-lite.ini
 * https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/remote-full.ini
 
 
 
 ### 本地配置
 
-* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/local.yaml
+* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/local-lite.yaml
+* https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/local-full.yaml
 
 
 
@@ -144,7 +145,65 @@ custom_proxy_group=🌍 非洲国家`select`(南非|埃及|尼日利亚|South Af
 
 
 
-### 参考资料
+### 规则分类
+
+> 国外媒体
+
+| 平台           | 规则                                                         |
+| -------------- | ------------------------------------------------------------ |
+| 🎬 YouTube      | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml |
+| 📽️ Netflix      | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml |
+| 🏰 Disney       | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml |
+| 🎵 Spotify      | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml |
+| ▶️ PrimeVideo   | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.yaml |
+| 📺 BiliBiliIntl | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml |
+| 👘 Bahamut      | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml |
+| 💬 Niconico     | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Niconico/Niconico.yaml |
+| 🔴 Twitch       | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch.yaml |
+
+> 社交应用
+
+| 平台       | 规则                                                         |
+| ---------- | ------------------------------------------------------------ |
+| 🕊️ Twitter  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml |
+| ✈️ Telegram | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml |
+| 👥 Facebook | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml |
+| 🎧 Discord  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml |
+| 💃 TikTok   | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml |
+| 🤖 Reddit   | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml |
+
+> 人工智能
+
+| 平台      | 规则                                                         |
+| --------- | ------------------------------------------------------------ |
+| 🧠 OpenAI  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml |
+| 🌟 Gemini  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml |
+| ☕ Claude  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml |
+| 👀 Copilot | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml |
+
+> 游戏平台
+
+| 平台          | 规则                                                         |
+| ------------- | ------------------------------------------------------------ |
+| 🕹️ Epic        | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml |
+| 🙅 Xbox        | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox.yaml |
+| 💨 Steam       | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml |
+| 🍄 Nintendo    | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml |
+| 🎮 PlayStation | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PlayStation/PlayStation.yaml |
+
+> Apple
+
+| 平台       | 规则                                                         |
+| ---------- | ------------------------------------------------------------ |
+| ☁️ iCloud   | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/iCloud/iCloud.yaml |
+| 🛒 AppStore | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppStore/AppStore.yaml |
+| 🍿 AppleTV  | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleTV/AppleTV.yaml |
+
+
+
+
+
+## 参考资料
 
 > 非常感谢ACL4SSR&blackmatrix7&Tindy2013 等大佬的无私奉献
 
