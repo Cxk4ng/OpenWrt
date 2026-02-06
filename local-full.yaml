@@ -672,11 +672,11 @@ rules:
   # 局域网及本地规则 (最高优先级)
   - DOMAIN-SUFFIX,localhost,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - RULE-SET,LAN,DIRECT
   - RULE-SET,ProxyWhitelist,DIRECT
+  
+  # 国内网站
+  - GEOSITE,CN,DIRECT                   # 国内域名直连
 
   # 人工智能
   - RULE-SET,OpenAI,🧠 OpenAI
@@ -714,11 +714,10 @@ rules:
   - RULE-SET,iCloud,☁️ iCloud
   - RULE-SET,AppStore,🛒 AppStore
   - RULE-SET,AppleTV,🍿 AppleTV
-
-  # 其他分流规则 (兜底前)
-  - GEOSITE,CN,DIRECT                   # 国内域名直连
+    
+  # 漏掉的国外域名IP
   - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名代理
-  - GEOIP,CN,DIRECT                     # 国内IP直连
+  - GEOIP,CN,DIRECT                     # 国内IP直连(防止国外域名DNS污染直连)
   - GEOIP,!CN,🐟 国外代理                # 国外IP代理
 
   # 最终兜底 (MATCH)
