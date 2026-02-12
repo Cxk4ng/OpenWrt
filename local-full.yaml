@@ -319,6 +319,13 @@ proxy-groups:
       🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
+    
+  - name: 📖 Wikimedia
+    type: select
+    proxies: [
+      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
+    ]
 
   - name: 🕹️ Epic
     type: select
@@ -586,6 +593,14 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml'
     path: './rule_set/Copilot.list'
 
+  Wikimedia:
+    type: http
+    behavior: classical
+    interval: 43200
+    proxy: 🐟 国外代理
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Wikimedia/Wikimedia.yaml'
+    path: './rule_set/Wikimedia.list'
+    
   Epic:
     type: http
     behavior: classical
@@ -702,6 +717,9 @@ rules:
   - RULE-SET,Bahamut,👘 Bahamut
   - RULE-SET,Niconico,💬 Niconico
   - RULE-SET,Twitch,🔴 Twitch
+  
+  # 国外网站
+  - RULE-SET,Wikimedia,📖 Wikimedia
 
   # 游戏平台
   - RULE-SET,Epic,🕹️ Epic
