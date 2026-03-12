@@ -222,31 +222,10 @@ proxy-groups:
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
-  - name: 📺 BiliBiliIntl
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
   - name: 👘 Bahamut
     type: select
     proxies: [
       🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 💬 Niconico
-    type: select
-    proxies: [
-      🇯🇵 日本节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🔴 Twitch
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
@@ -264,20 +243,6 @@ proxy-groups:
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
-  - name: 👥 Facebook
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🎧 Discord
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
   - name: 💃 TikTok
     type: select
     proxies: [
@@ -288,95 +253,53 @@ proxy-groups:
   - name: 🤖 Reddit
     type: select
     proxies: [
-      🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
-  - name: 🧠 OpenAI
+  - name: 🧠 ChatGPT
     type: select
     proxies: [
-      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
   - name: 🌟 Gemini
     type: select
     proxies: [
-      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
   - name: ☕ Claude
     type: select
     proxies: [
-      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
   - name: 👀 Copilot
     type: select
     proxies: [
-      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
     
   - name: 📖 Wikimedia
     type: select
     proxies: [
-      🇨🇳 台湾节点, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
+      🇺🇲 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇨🇳 台湾节点, 🇭🇰 香港节点, 🇸🇬 狮城节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
-  - name: 🕹️ Epic
+  - name: 🎮 Gaming
     type: select
     proxies: [
       🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
       🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
     ]
 
-  - name: 🙅 Xbox
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 💨 Steam
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🍄 Nintendo
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🎮 PlayStation
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: ☁️ iCloud
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🛒 AppStore
-    type: select
-    proxies: [
-      🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
-      🎏 亚洲国家, 🏰 欧洲国家, 🗺︎ 美洲国家, 🦘 澳洲国家, 🏜️ 非洲国家
-    ]
-
-  - name: 🍿 AppleTV
+  - name: 🍎 Apple
     type: select
     proxies: [
       🇭🇰 香港节点, 🇨🇳 台湾节点, 🇰🇷 韩国节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇦 加国节点,
@@ -481,14 +404,6 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.yaml'
     path: './rule_set/PrimeVideo.list'
 
-  BiliBiliIntl:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml'
-    path: './rule_set/BiliBiliIntl.list'
-
   Bahamut:
     type: http
     behavior: classical
@@ -496,22 +411,6 @@ rule-providers:
     proxy: 🐟 国外代理
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml'
     path: './rule_set/Bahamut.list'
-
-  Niconico:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Niconico/Niconico.yaml'
-    path: './rule_set/Niconico.list'
-
-  Twitch:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch.yaml'
-    path: './rule_set/Twitch.list'
 
   Twitter:
     type: http
@@ -528,22 +427,6 @@ rule-providers:
     proxy: 🐟 国外代理
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml'
     path: './rule_set/Telegram.list'
-
-  Facebook:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml'
-    path: './rule_set/Facebook.list'
-
-  Discord:
-    type: http
-    behavior: classical
-    interval: 43200
-    proxy: 🐟 国外代理
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml'
-    path: './rule_set/Discord.list'
 
   TikTok:
     type: http
@@ -694,7 +577,7 @@ rules:
   - GEOSITE,CN,DIRECT                   # 国内域名直连
 
   # 人工智能
-  - RULE-SET,OpenAI,🧠 OpenAI
+  - RULE-SET,OpenAI,🧠 ChatGPT
   - RULE-SET,Gemini,🌟 Gemini
   - RULE-SET,Claude,☕ Claude
   - RULE-SET,Copilot,👀 Copilot
@@ -702,8 +585,6 @@ rules:
   # 社交应用
   - RULE-SET,Telegram,✈️ Telegram
   - RULE-SET,Twitter,🕊️ Twitter
-  - RULE-SET,Facebook,👥 Facebook
-  - RULE-SET,Discord,🎧 Discord
   - RULE-SET,TikTok,💃 TikTok
   - RULE-SET,Reddit,🤖 Reddit
 
@@ -713,25 +594,22 @@ rules:
   - RULE-SET,Disney,🏰 Disney
   - RULE-SET,Spotify,🎵 Spotify
   - RULE-SET,PrimeVideo,▶️ PrimeVideo
-  - RULE-SET,BiliBiliIntl,📺 BiliBiliIntl
   - RULE-SET,Bahamut,👘 Bahamut
-  - RULE-SET,Niconico,💬 Niconico
-  - RULE-SET,Twitch,🔴 Twitch
   
   # 国外网站
   - RULE-SET,Wikimedia,📖 Wikimedia
 
   # 游戏平台
-  - RULE-SET,Epic,🕹️ Epic
-  - RULE-SET,Xbox,🙅 Xbox
-  - RULE-SET,Steam,💨 Steam
-  - RULE-SET,Nintendo,🍄 Nintendo
-  - RULE-SET,PlayStation,🎮 PlayStation
+  - RULE-SET,Epic,🎮 Gaming
+  - RULE-SET,Xbox,🎮 Gaming
+  - RULE-SET,Steam,🎮 Gaming
+  - RULE-SET,Nintendo,🎮 Gaming
+  - RULE-SET,PlayStation,🎮 Gaming
 
   # Apple服务
-  - RULE-SET,iCloud,☁️ iCloud
-  - RULE-SET,AppStore,🛒 AppStore
-  - RULE-SET,AppleTV,🍿 AppleTV
+  - RULE-SET,iCloud,🍎 Apple
+  - RULE-SET,AppStore,🍎 Apple
+  - RULE-SET,AppleTV,🍎 Apple
     
   # 漏掉的国外域名IP
   - GEOSITE,geolocation-!cn,🐟 国外代理  # 国外域名代理
