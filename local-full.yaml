@@ -576,8 +576,8 @@ rules:
   # 局域网及本地规则 (最高优先级)
   - DOMAIN-SUFFIX,localhost,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - RULE-SET,LAN,DIRECT
-  - RULE-SET,ProxyWhitelist,DIRECT
+  - RULE-SET,LAN,🚩 国内直连
+  - RULE-SET,ProxyWhitelist,🚩 国内直连
   
   # 国内网站
   - GEOSITE,CN,DIRECT                   # 国内域名直连
