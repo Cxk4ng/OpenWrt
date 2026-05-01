@@ -616,9 +616,6 @@ rules:
   - RULE-SET,iCloud,🍎 Apple
   - RULE-SET,AppStore,🍎 Apple
   - RULE-SET,AppleTV,🍎 Apple
-    
-  # 漏掉的国外域名
-  - GEOSITE,geolocation-!cn,🐟 国外代理  # 漏掉国外域名
 
   # 最终兜底 (MATCH)
   - MATCH,DIRECT                        # 未匹配到的流量直连 (防止流量意外流失)
