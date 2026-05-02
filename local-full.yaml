@@ -620,6 +620,9 @@ rules:
 
   # 非大陆域名走代理
   - GEOSITE,geolocation-!cn,🐟 国外代理
+  
+  # 国内IP直连
+  - GEOIP,CN,DIRECT
 
-  # 未匹配到直连
-  - MATCH,DIRECT                  
+  # 未匹配到走代理
+  - MATCH,🐟 国外代理                  
