@@ -580,9 +580,8 @@ rules:
   - RULE-SET,LAN,🚩 国内直连
   - RULE-SET,ProxyWhitelist,🚩 国内直连
   
-  # 国内域名&IP直连
+  # 国内域名直连
   - GEOSITE,CN,DIRECT
-  - GEOIP,CN,DIRECT
 
   # 人工智能
   - RULE-SET,OpenAI,🧠 ChatGPT
