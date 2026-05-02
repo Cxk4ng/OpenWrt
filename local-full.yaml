@@ -565,6 +565,7 @@ rule-providers:
   ProxyWhitelist:
     type: http
     behavior: classical
+    format: text
     interval: 43200
     proxy: 🚩 国内直连
     url: 'https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/rule/ProxyWhitelist.list'
@@ -579,8 +580,9 @@ rules:
   - RULE-SET,LAN,🚩 国内直连
   - RULE-SET,ProxyWhitelist,🚩 国内直连
   
-  # 国内网站
-  - GEOSITE,CN,DIRECT                   # 国内域名直连
+  # 国内域名&IP直连
+  - GEOSITE,CN,DIRECT
+  - GEOIP,CN,DIRECT
 
   # 人工智能
   - RULE-SET,OpenAI,🧠 ChatGPT
@@ -617,5 +619,8 @@ rules:
   - RULE-SET,AppStore,🍎 Apple
   - RULE-SET,AppleTV,🍎 Apple
 
-  # 最终兜底 (MATCH)
-  - MATCH,DIRECT                        # 未匹配到的流量直连 (防止流量意外流失)
+  # 非大陆域名走代理
+  - GEOSITE,geolocation-!cn,🐟 国外代理
+
+  # 未匹配到直连
+  - MATCH,DIRECT                  
