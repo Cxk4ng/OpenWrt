@@ -558,7 +558,7 @@ rule-providers:
     type: http              # 获取类型
     behavior: classical     # 规则行为模式 (经典模式 支持域名、IP、关键词)
     interval: 43200         # 更新频率: 12h
-    proxy: 🚩 国内直连       # 下载时使用的代理
+    proxy: 🐟 国外代理       # 下载时使用的代理
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml'
     path: './rule_set/Lan.list'
 
@@ -567,7 +567,7 @@ rule-providers:
     behavior: classical
     format: text
     interval: 43200
-    proxy: 🚩 国内直连
+    proxy: 🐟 国外代理
     url: 'https://raw.githubusercontent.com/cxk4ng/OpenWrt/main/rule/ProxyWhitelist.list'
     path: './rule_set/ProxyWhitelist.list'
 
