@@ -33,7 +33,7 @@ DOMAIN-SUFFIX,chiphell.com
 DOMAIN-SUFFIX,xiaomai.win
 
 # ClaudeGo
-DOMAIN-SUFFIX,claudeapi.win
+# DOMAIN-SUFFIX,claudeapi.win
 
 # MeDomain
 DOMAIN-SUFFIX,k4ng.org
