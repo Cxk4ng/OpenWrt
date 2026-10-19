@@ -56,7 +56,6 @@ profile:
   store-fake-ip: true                   # 记忆Fake-IP (重启后保持IP映射表)
 unified-delay: true                     # 统一延迟 (计算延迟时包含握手时间)
 tcp-concurrent: true                    # TCP并发请求测速
-global-client-fingerprint: chrome       # 浏览器指纹
 geodata-mode: true                      # 开启 GeoData 模式
 geo-auto-update: false                  # 是否自动更新数据库
 geo-update-interval: 24                 # 更新间隔（单位：小时）
