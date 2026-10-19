@@ -23,10 +23,6 @@ proxy-providers:
 
 # 全局配置
 mixed-port: 7890            # 混合端口
-socks-port: 0               # SOCKS5端口 (0表示流量从mixed-port出去)
-port: 0                     # HTTP端口
-redir-port: 0               # 透明代理端口
-tproxy-port: 0              # TProxy端口
 mode: rule                  # 运行模式 (rule,global,direct)
 log-level: info             # 日志级别 (silent,error,warn,info,debug)
 ipv6: true                  # ipv6开关 (是否处理ipv6流量)
